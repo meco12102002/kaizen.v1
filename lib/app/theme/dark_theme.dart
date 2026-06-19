@@ -12,7 +12,6 @@ class DarkTheme {
         primary: AppColors.primary,
         surface: AppColors.darkSurface,
       ),
-
       scaffoldBackgroundColor: AppColors.darkBackground,
     );
   }
