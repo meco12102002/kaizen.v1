@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kaizen/app/theme/app_theme.dart';
+import 'package:kaizen/features/tasks/presentation/pages/onboarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Placeholder(),
+      home: const Onboarding(),
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: ThemeMode.system,
