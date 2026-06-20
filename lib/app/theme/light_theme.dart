@@ -8,12 +8,14 @@ class LightTheme {
       brightness: Brightness.light,
 
       colorScheme: ColorScheme.light(
+
         primary: AppColors.primary,
         surface: AppColors.lightSurface,
+        onPrimary: AppColors.darkText
       ),
 
       scaffoldBackgroundColor: AppColors.lightBackground,
-
+      
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.lightBackground,
       ),
