@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Brand
-  static const primary = Color(0xFF4CAF50);
+  static const seed = Color(0xFF5C8F6E);
 
-  // Light
-  static const lightBackground = Color(0xFFF8FAFC);
-  static const lightSurface = Color(0xFFFFFFFF);
+  static const lightBackground = Color(0xFFF5F7F2);
+  static const lightSurface = Color(0xFFFDFDF8);
+  static const lightOutline = Color(0xFFD7DDD2);
 
-  // Dark
-  static const darkBackground = Color(0xFF10141A);
-  static const darkSurface = Color(0xFF080E13);
-
-  // Text
-  static const darkText = Color(0xFF111827);
-  static const lightText = Color(0xFFF8FAFC);
+  static const darkBackground = Color(0xFF111512);
+  static const darkSurface = Color(0xFF171C18);
+  static const darkOutline = Color(0xFF3B443D);
 }
