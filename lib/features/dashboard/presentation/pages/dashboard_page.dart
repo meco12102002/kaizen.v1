@@ -138,9 +138,7 @@ class _DashboardPageState extends State<DashboardPage> {
     unawaited(_notificationService.initialize());
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Testing notification delivery now.'),
-      ),
+      const SnackBar(content: Text('Testing notification delivery now.')),
     );
 
     await showDialog<void>(
@@ -148,7 +146,9 @@ class _DashboardPageState extends State<DashboardPage> {
       builder: (context) {
         return AlertDialog(
           title: const Text('Test notification'),
-          content: const Text('This is the built-in fallback so we can confirm the button is working.'),
+          content: const Text(
+            'This is the built-in fallback so we can confirm the button is working.',
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -308,7 +308,8 @@ class _DashboardPageState extends State<DashboardPage> {
           ? dueAt
           : dueAt.subtract(Duration(minutes: task.reminderMinutesBefore!));
       final inReminderWindow =
-          now.isAfter(reminderAt) && now.isBefore(dueAt.add(const Duration(minutes: 1)));
+          now.isAfter(reminderAt) &&
+          now.isBefore(dueAt.add(const Duration(minutes: 1)));
 
       if (inReminderWindow && !_shownReminderIds.contains(task.id)) {
         _shownReminderIds.add(task.id);
@@ -467,7 +468,7 @@ class _DashboardPageState extends State<DashboardPage> {
         final colorScheme = Theme.of(context).colorScheme;
 
         return Scaffold(
-          drawer: isDesktop ? null : const Drawer(child: Sidebar()),
+          drawer: isDesktop ? null : Drawer(child: Sidebar()),
           body: Stack(
             children: [
               IgnorePointer(
@@ -477,7 +478,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   opacity: _showFocusWindow ? 0.28 : 1,
                   child: Row(
                     children: [
-                      if (isDesktop) const Sidebar(),
+                      if (isDesktop) Sidebar(),
                       Expanded(
                         child: DashboardContent(
                           stats: _derivedStats,
@@ -516,7 +517,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 Positioned.fill(
                   child: IgnorePointer(
                     child: Container(
-                      color: colorScheme.surface.withOpacity(0.08),
+                      color: colorScheme.surface.withValues(alpha: 0.08),
                     ),
                   ),
                 ),

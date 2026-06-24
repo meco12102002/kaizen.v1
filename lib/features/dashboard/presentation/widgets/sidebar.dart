@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Sidebar extends StatelessWidget {
-  const Sidebar({super.key});
+  const Sidebar({super.key, this.onUsageTap});
+
+  final VoidCallback? onUsageTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +31,23 @@ class Sidebar extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 32),
-          const SidebarItem(icon: Icons.home_rounded, label: 'Home', isActive: true),
-          const SidebarItem(icon: Icons.check_circle_outline_rounded, label: 'Tasks'),
+          const SidebarItem(
+            icon: Icons.home_rounded,
+            label: 'Home',
+            isActive: true,
+          ),
+          const SidebarItem(
+            icon: Icons.check_circle_outline_rounded,
+            label: 'Tasks',
+          ),
           const SidebarItem(icon: Icons.repeat_rounded, label: 'Habits'),
           const SidebarItem(icon: Icons.timer_rounded, label: 'Focus'),
           const SidebarItem(icon: Icons.edit_note_rounded, label: 'Reflection'),
+          SidebarItem(
+            icon: Icons.data_usage_rounded,
+            label: 'Usage',
+            onTap: onUsageTap,
+          ),
           const SidebarItem(icon: Icons.analytics_outlined, label: 'Analytics'),
           const SizedBox(height: 26),
           Text(
@@ -49,7 +63,9 @@ class Sidebar extends StatelessWidget {
           const Spacer(),
           Text(
             'v0.1.0 - Build with consistency',
-            style: textTheme.bodySmall?.copyWith(color: colorScheme.onSurfaceVariant),
+            style: textTheme.bodySmall?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
           ),
         ],
       ),
@@ -63,11 +79,13 @@ class SidebarItem extends StatefulWidget {
     required this.icon,
     required this.label,
     this.isActive = false,
+    this.onTap,
   });
 
   final IconData icon;
   final String label;
   final bool isActive;
+  final VoidCallback? onTap;
 
   @override
   State<SidebarItem> createState() => _SidebarItemState();
@@ -83,10 +101,11 @@ class _SidebarItemState extends State<SidebarItem> {
     final backgroundColor = widget.isActive
         ? colorScheme.primary
         : _isHovered
-            ? colorScheme.surfaceContainerHighest
-            : colorScheme.surfaceContainer.withOpacity(0);
-    final foregroundColor =
-        widget.isActive ? colorScheme.onPrimary : colorScheme.onSurfaceVariant;
+        ? colorScheme.surfaceContainerHighest
+        : colorScheme.surfaceContainer.withOpacity(0);
+    final foregroundColor = widget.isActive
+        ? colorScheme.onPrimary
+        : colorScheme.onSurfaceVariant;
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
@@ -109,8 +128,10 @@ class _SidebarItemState extends State<SidebarItem> {
             ),
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          onTap: () {},
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          onTap: widget.onTap,
         ),
       ),
     );

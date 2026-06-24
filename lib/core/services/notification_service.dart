@@ -8,28 +8,30 @@ class NotificationService {
 
   static final instance = NotificationService._();
 
-  final FlutterLocalNotificationsPlugin _plugin = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _plugin =
+      FlutterLocalNotificationsPlugin();
+
   bool _initialized = false;
 
   Future<void> initialize() async {
     if (_initialized) return;
 
+    // Initialize timezone support
     tz.initializeTimeZones();
+
     final localTimeZone = await FlutterTimezone.getLocalTimezone();
-    tz.setLocalLocation(tz.getLocation(localTimeZone));
+
+    tz.setLocalLocation(tz.getLocation(localTimeZone as String));
 
     const android = AndroidInitializationSettings('@mipmap/ic_launcher');
+
     const initSettings = InitializationSettings(
       android: android,
       iOS: DarwinInitializationSettings(),
-      windows: WindowsInitializationSettings(
-        appName: 'Kaizen',
-        appUserModelId: 'com.kaizen.app',
-        guid: 'd2a4dbe6-4c4f-4b47-9c5e-9d1e5d7a8a11',
-      ),
     );
 
     await _plugin.initialize(initSettings);
+
     _initialized = true;
   }
 
@@ -54,9 +56,14 @@ class NotificationService {
       importance: Importance.high,
       priority: Priority.high,
     );
+
     const details = NotificationDetails(
       android: androidDetails,
-      iOS: DarwinNotificationDetails(presentAlert: true, presentBadge: true, presentSound: true),
+      iOS: DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      ),
     );
 
     await _plugin.zonedSchedule(
@@ -75,6 +82,7 @@ class NotificationService {
     if (!_initialized) {
       await initialize();
     }
+
     await _plugin.cancel(id);
   }
 
@@ -90,12 +98,13 @@ class NotificationService {
       importance: Importance.high,
       priority: Priority.high,
     );
+
     const details = NotificationDetails(
       android: androidDetails,
-      iOS: DarwinNotificationDetails(presentAlert: true, presentBadge: true, presentSound: true),
-      windows: WindowsNotificationDetails(
-        appName: 'Kaizen',
-        appUserModelId: 'com.kaizen.app',
+      iOS: DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
       ),
     );
 
