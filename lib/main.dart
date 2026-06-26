@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:kaizen/common/styles/themes.dart';
+import 'package:kaizen/features/onboarding/onboarding_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Placeholder()
+      home: Onboarding(),
+      theme: lightMode,
+      darkTheme: darkMode,
     );
   }
 }

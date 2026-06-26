@@ -5,6 +5,7 @@ class OnboardingSlide3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(backgroundColor: Colors.blue);
+    return  Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface);
   }
 }
