@@ -5,6 +5,21 @@ class OnboardingSlide1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Theme.of(context).colorScheme.surface);
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      body: Center(
+        child: RichText(
+          text: TextSpan(
+            text: 'Welcome to ',
+            children: <TextSpan>[
+              TextSpan(
+                text: 'Kaizen',
+                style: TextStyle(color: Theme.of(context).colorScheme.primary),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -10,6 +10,7 @@ class Onboarding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        
         controller: _controller,
         children: [OnboardingSlide1(), OnboardingSlide2(), OnboardingSlide3()],
       ),
